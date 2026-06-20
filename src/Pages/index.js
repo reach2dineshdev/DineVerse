@@ -1,0 +1,9 @@
+export { MovieDetails } from './MovieDetails';
+export { MovieList } from './MovieList';
+export { PageNotFound } from './PageNotFound';
+export { Search } from './Search';
+export { Home } from './Home';
+export { Login } from './Login';
+export { Account } from './Account';
+export { MyList } from './MyList';
+export { HelpCenter } from './HelpCenter';
