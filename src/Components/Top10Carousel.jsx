@@ -80,9 +80,7 @@ export const Top10Carousel = ({ title, movies = [] }) => {
             const poster = movie.poster_path
               ? `${TMDB_IMG}${movie.poster_path}`
               : null;
-            const rating = movie.vote_average
-              ? Number(movie.vote_average).toFixed(1)
-              : 'N/A';
+
 
             return (
               <div key={movie.id} className="top10-card-wrapper">

@@ -79,7 +79,7 @@ export const MovieDetails = () => {
       }
     }
     fetchMovieData();
-  }, [id, key]);
+  }, [id, key, mediaType]);
 
   useEffect(() => {
     if (movie.title) {
