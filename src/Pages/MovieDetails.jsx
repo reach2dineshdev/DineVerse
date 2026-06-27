@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import movie_img from '../assets/movie.png'
 import { convertMinutes, formatMoney, formatDate } from "../Utils/utils";
 import { useAuth } from "../AuthContext";
-import { Link, useNavigate } from "react-router-dom";
 
 export const MovieDetails = () => {
 
   const { id } = useParams();
-  const mediaType = window.location.pathname.includes('/tv/') ? 'tv' : 'movie';
+  const mediaType = globalThis.location.pathname.includes('/tv/') ? 'tv' : 'movie';
   const [movie, setMovie] = useState({});
   const [trailerKey, setTrailerKey] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
@@ -260,6 +259,8 @@ export const MovieDetails = () => {
                     style={{ width: '100%', height: '225px', objectFit: 'cover', transition: 'transform 0.2s' }}
                     onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                     onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    onFocus={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onBlur={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
                   <div className="text-light fw-bold text-truncate" style={{ fontSize: '0.9rem' }}>{rec.title}</div>
                 </Link>

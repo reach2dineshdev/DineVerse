@@ -67,9 +67,16 @@ export const HeroCarousel = ({ movies = [] }) => {
   const year     = movie.release_date  ? movie.release_date.slice(0, 4) : '';
 
   /* YouTube embed URL – muted, autoplaying, looping, no controls */
-  const ytSrc = trailerKey
-    ? `https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${trailerKey}&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1`
-    : null;
+  let ytSrc = null;
+  if (trailerKey) {
+    const muteParam = isMuted ? 1 : 0;
+    ytSrc = `https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&mute=${muteParam}&loop=1&playlist=${trailerKey}&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1`;
+  }
+
+  let overviewText = 'No overview available.';
+  if (movie.overview) {
+    overviewText = movie.overview.length > 200 ? movie.overview.slice(0, 200) + '…' : movie.overview;
+  }
 
   return (
     <div className="hero-carousel">
@@ -117,11 +124,7 @@ export const HeroCarousel = ({ movies = [] }) => {
         </h1>
 
         <p className="hero-carousel__overview">
-          {movie.overview
-            ? movie.overview.length > 200
-              ? movie.overview.slice(0, 200) + '…'
-              : movie.overview
-            : 'No overview available.'}
+          {overviewText}
         </p>
 
         <div className="hero-carousel__actions">
@@ -163,9 +166,9 @@ export const HeroCarousel = ({ movies = [] }) => {
 
       {/* ── DOT INDICATORS ── */}
       <div className="hero-carousel__dots">
-        {featured.map((_, i) => (
+        {featured.map((f, i) => (
           <button
-            key={i}
+            key={f.id || i}
             className={`hero-carousel__dot${i === current ? ' hero-carousel__dot--active' : ''}`}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}

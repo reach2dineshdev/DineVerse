@@ -3,9 +3,8 @@ import { Home, MovieDetails, MovieList, PageNotFound, Search, Login, Account, My
 
 export const AllRoutes = () => {
   return (
-    <>
-      <Routes>
-        {/* Auth */}
+    <Routes>
+      {/* Auth */}
         <Route path='/login' element={<Login />} />
         <Route path='/account' element={<Account />} />
         <Route path='/my-list' element={<MyList />} />
@@ -24,7 +23,6 @@ export const AllRoutes = () => {
         <Route path='tv/:id'    element={<MovieDetails />} />
         <Route path='search'    element={<Search apiPath="search/movie" />} />
         <Route path='*'         element={<PageNotFound />} />
-      </Routes>
-    </>
+    </Routes>
   )
 }

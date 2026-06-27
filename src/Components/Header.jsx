@@ -49,8 +49,7 @@ export const Header = () => {
   };
 
   return (
-    <>
-      <nav className={`navbar navbar-expand-lg navbar-dark fixed-top ${(scrolled && !isLoginPage) ? 'scrolled' : ''}`}>
+    <nav className={`navbar navbar-expand-lg navbar-dark fixed-top ${(scrolled && !isLoginPage) ? 'scrolled' : ''}`}>
         <div className="container-fluid px-4">
           <NavLink to="/" className="navbar-brand ms-2 me-5">
             <img src="/logo-red.png" alt="DineVerse" style={{ height: '48px' }} />
@@ -152,9 +151,9 @@ export const Header = () => {
                           <span style={{fontSize:'0.9rem'}}>Help Center</span>
                         </Link>
                         <div className="cinematic-dropdown-divider mt-2 mb-2"></div>
-                        <a className="cinematic-dropdown-item justify-content-center" href="#" onClick={handleLogout} style={{fontSize:'0.9rem', padding: '16px'}}>
+                        <button type="button" className="cinematic-dropdown-item justify-content-center border-0 bg-transparent w-100 text-start" onClick={handleLogout} style={{fontSize:'0.9rem', padding: '16px'}}>
                           Sign out of DineVerse
-                        </a>
+                        </button>
                       </div>
                     </div>
                   ) : (
@@ -166,6 +165,5 @@ export const Header = () => {
           )}
         </div>
       </nav>
-    </>
   )
 }
