@@ -42,8 +42,7 @@ export const PageNotFound = () => {
         className="btn btn-primary px-5 py-3"
         style={{ borderRadius: '30px', fontSize: '1rem' }}
       >
-        <i className="bi bi-house-door-fill me-2"></i>
-        Take Me Home
+        <i className="bi bi-house-door-fill me-2"></i>{" "}Take Me Home
       </Link>
     </div>
   )

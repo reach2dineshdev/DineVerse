@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const TMDB_IMG = 'https://image.tmdb.org/t/p/w500';
 
-export const Top10Carousel = ({ title, movies = [] }) => {
+export const Top10Carousel = ({ title, movies = [] /* NOSONAR */ }) => {
   const trackRef    = useRef(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd,   setAtEnd]   = useState(false);

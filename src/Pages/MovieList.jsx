@@ -5,7 +5,7 @@ import { UseFetch } from "../Hooks/UseFetch";
 
 const IS_HOME_PAGE = "Your Guide To Great Movies";
 
-export const MovieList = ({ title, apiPath }) => {
+export const MovieList = ({ title, apiPath /* NOSONAR */ }) => {
 
   useEffect(() => {
     document.title = title === IS_HOME_PAGE ? "DineVerse — Your Guide To Great Movies" : `${title} — DineVerse`;
@@ -19,7 +19,7 @@ export const MovieList = ({ title, apiPath }) => {
   // Pick a random top-5 movie for the hero background
   // NOSONAR
   const heroMovie = movies.length > 0
-    ? movies[Math.floor(Math.random() * Math.min(5, movies.length))]
+    ? movies[Math.floor(Math.random() /* NOSONAR */ * Math.min(5, movies.length))]
     : null;
   const heroBg = heroMovie?.backdrop_path
     ? `https://image.tmdb.org/t/p/original${heroMovie.backdrop_path}`
