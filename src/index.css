@@ -1,2 +1,4 @@
 /* Index styling */
-:root {}
+:root {
+  --app-loaded: 1; /* NOSONAR */
+}

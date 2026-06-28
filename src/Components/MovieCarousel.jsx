@@ -1,56 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import { useCarousel } from '../Hooks/useCarousel';
 
 const TMDB_IMG = 'https://image.tmdb.org/t/p/w780';
 
 export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
-  const trackRef    = useRef(null);
   const { currentUser, toggleSavedMovie, isMovieSaved } = useAuth();
   const navigate = useNavigate();
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd,   setAtEnd]   = useState(false);
-  const [scrollPos, setScrollPos] = useState(0);
-
-  const checkEdges = (newPos) => {
-    const el = trackRef.current;
-    if (!el) return;
-    
-    const containerWidth = el.parentElement.clientWidth;
-    const trackWidth = el.scrollWidth;
-    const maxScroll = Math.max(0, trackWidth - containerWidth);
-    
-    setAtStart(newPos >= 0);
-    setAtEnd(newPos <= -maxScroll);
-  };
-
-  useEffect(() => {
-    setScrollPos(0);
-    setAtStart(true);
-    setTimeout(() => {
-      if (trackRef.current) {
-        const el = trackRef.current;
-        setAtEnd(el.scrollWidth <= el.parentElement.clientWidth);
-      }
-    }, 100);
-  }, [movies]);
-
-  const scroll = (dir) => {
-    const el = trackRef.current;
-    if (!el) return;
-    
-    const containerWidth = el.parentElement.clientWidth;
-    const maxScroll = -(Math.max(0, el.scrollWidth - containerWidth));
-    const scrollAmount = containerWidth * 0.8;
-    
-    let newPos = scrollPos + (-dir * scrollAmount);
-    
-    if (newPos > 0) newPos = 0;
-    if (newPos < maxScroll) newPos = maxScroll;
-    
-    setScrollPos(newPos);
-    checkEdges(newPos);
-  };
+  
+  const { trackRef, atStart, atEnd, scrollPos, scroll } = useCarousel([movies]);
 
   if (!movies.length) return null;
 
