@@ -6,7 +6,7 @@ export const Card = ({ movie /* NOSONAR */ }) => {
   const navigate = useNavigate();
   const { currentUser, toggleSavedMovie, isMovieSaved } = useAuth();
 
-  const { poster_path, id, overview, title, vote_average, vote_count } = movie;
+  const { poster_path, id, overview, title, vote_average, vote_count /* NOSONAR */ } = movie;
 
   const image = poster_path
     ? `https://image.tmdb.org/t/p/w500${poster_path}`

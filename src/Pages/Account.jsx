@@ -98,13 +98,10 @@ export const Account = () => {
         
         {/* Profile Overview */}
         <div className="text-center mb-5">
-          <div 
-            className="position-relative d-inline-block mb-3" 
-            style={{ cursor: 'pointer' }}
+          <button 
+            type="button"
+            className="position-relative d-inline-block mb-3 border-0 bg-transparent p-0" 
             onClick={() => setShowAvatarGrid(!showAvatarGrid)}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowAvatarGrid(!showAvatarGrid); } }}
-            role="button"
-            tabIndex={0}
           >
             <img 
               src={customAvatar || currentUser.photoURL || "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"} 
@@ -119,7 +116,7 @@ export const Account = () => {
             <div className="position-absolute bottom-0 end-0 bg-primary rounded-circle" style={{ width: '28px', height: '28px', border: '3px solid #111', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <i className="bi bi-camera-fill text-white" style={{ fontSize: '12px' }}></i>
             </div>
-          </div>
+          </button>
           <h2 className="fw-bold mb-1" style={{ fontSize: '2.5rem', letterSpacing: '-1px' }}>{currentUser.displayName || 'User'}</h2>
           <p className="text-light opacity-75 fs-5 mb-0">{currentUser.email}</p>
         </div>
@@ -130,21 +127,23 @@ export const Account = () => {
             <h5 className="text-white mb-3 text-center">Choose an Avatar</h5>
             <div className="d-flex flex-wrap justify-content-center gap-3">
               {avatars.map((url) => (
-                <img 
+                <button
                   key={url}
-                  src={url}
-                  alt="Avatar option"
-                  className="rounded-circle cursor-pointer border border-2 border-transparent"
-                  style={{ width: '60px', height: '60px', objectFit: 'cover', cursor: 'pointer', transition: 'all 0.2s' }}
+                  type="button"
+                  className="p-0 border-0 bg-transparent"
                   onClick={() => handleUpdateAvatar(url)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleUpdateAvatar(url); } }}
-                  role="button"
-                  tabIndex={0}
-                  onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
-                  onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
-                  onFocus={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
-                  onBlur={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
-                />
+                >
+                  <img 
+                    src={url}
+                    alt="Avatar option"
+                    className="rounded-circle cursor-pointer border border-2 border-transparent"
+                    style={{ width: '60px', height: '60px', objectFit: 'cover', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
+                    onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
+                    onFocus={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
+                    onBlur={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
+                  />
+                </button>
               ))}
             </div>
             

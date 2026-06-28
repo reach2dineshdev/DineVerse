@@ -40,6 +40,7 @@ html, body {
 /* Non-home pages still need padding so content clears the fixed navbar */
 .page-transition {
     padding-top: 5.5rem;
+    animation: fadeInUp 0.4s ease-out both;
 }
 
 /* Home has its own hero that fills the viewport — override */
@@ -111,6 +112,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 20px;
     padding-left: 1.2rem;
     padding-right: 1.2rem;
+    background-color: #111;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: white !important;
@@ -118,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-input:focus {
+    background-color: #222;
     background: rgba(255, 255, 255, 0.12);
     border-color: var(--color-accent);
     box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.2);
@@ -140,6 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-search:hover {
+    background-color: #cc0000;
     background: #ff2a35;
     box-shadow: 0 0 14px rgba(229, 9, 20, 0.4);
     color: white;
@@ -282,7 +286,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: transform 0.2s;
 }
 
-.search-input {
+.search-container .search-input {
     width: 0;
     opacity: 0;
     padding: 0;
@@ -297,13 +301,13 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-appearance: none;
 }
 
-.search-input:focus {
+.search-container .search-input:focus {
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
 }
 
-.search-input::placeholder {
+.search-container .search-input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -377,6 +381,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cinematic-dropdown-item:hover {
+    background-color: #222;
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
@@ -570,9 +575,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================
    PAGE TRANSITIONS
    ============================================ */
-.page-transition {
-    animation: fadeInUp 0.4s ease-out both;
-}
 
 @keyframes fadeInUp {
     from {
@@ -750,6 +752,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-btn--primary:hover {
+    background-color: #cc0000;
     background: #ff2a35;
     color: white;
     transform: scale(1.04);
@@ -757,6 +760,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-btn--secondary {
+    background-color: #333;
     background: rgba(255, 255, 255, 0.15);
     color: white;
     backdrop-filter: blur(8px);
@@ -764,6 +768,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-btn--secondary:hover {
+    background-color: #444;
     background: rgba(255,255,255,0.25);
     color: white;
     transform: scale(1.04);
@@ -857,6 +862,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .movie-row {
     position: relative;
+    z-index: 1;
 }
 
 .movie-row__header {
@@ -870,10 +876,6 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 60;
 }
 
-.movie-row {
-    position: relative;
-    z-index: 1;
-}
 
 /* Ensure the currently hovered row sits above the rows below it */
 .movie-row:hover {
@@ -1169,6 +1171,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-btn-google:hover {
+    background-color: #333 !important;
     background: rgba(255, 255, 255, 0.2) !important;
     transform: translateY(-2px);
 }
@@ -1194,20 +1197,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25) !important;
 }
 
-
-.cinematic-accordion .accordion-button {
-    box-shadow: none !important;
+/* Page Transition Animation */
+.page-transition {
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-.cinematic-accordion .accordion-button:not(.collapsed) {
-    background-color: rgba(229, 9, 20, 0.1) !important;
-    color: var(--color-primary) !important;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
-
-.cinematic-accordion .accordion-button::after {
-    filter: invert(1);
-}
-
 
 .cinematic-accordion .accordion-item {
     background-color: rgba(30, 30, 30, 0.8) !important;
