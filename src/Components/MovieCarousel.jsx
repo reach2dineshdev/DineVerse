@@ -1,10 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const TMDB_IMG = 'https://image.tmdb.org/t/p/w780';
 
 export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
   const trackRef    = useRef(null);
+  const { currentUser, toggleSavedMovie, isMovieSaved } = useAuth();
+  const navigate = useNavigate();
   const [atStart, setAtStart] = useState(true);
   const [atEnd,   setAtEnd]   = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
@@ -89,6 +92,8 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
               ? Number(movie.vote_average).toFixed(1)
               : 'N/A';
 
+            const saved = isMovieSaved ? isMovieSaved(movie.id) : false;
+
             return (
               <Link
                 key={movie.id}
@@ -116,8 +121,20 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
                       <div className="movie-row__panel-btn movie-row__panel-btn--primary">
                         <i className="bi bi-play-fill fs-5" style={{ marginLeft: '2px' }}></i>
                       </div>
-                      <div className="movie-row__panel-btn">
-                        <i className="bi bi-plus fs-4"></i>
+                      <div 
+                        className="movie-row__panel-btn"
+                        title={saved ? "Remove from My List" : "Add to My List"}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (currentUser) {
+                            toggleSavedMovie(movie);
+                          } else {
+                            navigate('/login');
+                          }
+                        }}
+                      >
+                        <i className={`bi ${saved ? 'bi-check2' : 'bi-plus'} fs-4`}></i>
                       </div>
                     </div>
                     <div className="d-flex align-items-center gap-2 mb-1">
