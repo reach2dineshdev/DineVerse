@@ -81,6 +81,8 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
                       </div>
                       <div 
                         className="movie-row__panel-btn"
+                        role="button"
+                        tabIndex={0}
                         title={saved ? "Remove from My List" : "Add to My List"}
                         onClick={(e) => {
                           e.preventDefault();
@@ -89,6 +91,17 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
                             toggleSavedMovie(movie);
                           } else {
                             navigate('/login');
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (currentUser) {
+                              toggleSavedMovie(movie);
+                            } else {
+                              navigate('/login');
+                            }
                           }
                         }}
                       >
