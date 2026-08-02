@@ -79,10 +79,9 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
                       <div className="movie-row__panel-btn movie-row__panel-btn--primary">
                         <i className="bi bi-play-fill fs-5" style={{ marginLeft: '2px' }}></i>
                       </div>
-                      <div 
+                      <button 
                         className="movie-row__panel-btn"
-                        role="button"
-                        tabIndex={0}
+                        style={{ border: 'none', background: 'transparent', padding: 0 }}
                         title={saved ? "Remove from My List" : "Add to My List"}
                         onClick={(e) => {
                           e.preventDefault();
@@ -93,20 +92,9 @@ export const MovieCarousel = ({ title, movies = [], link /* NOSONAR */ }) => {
                             navigate('/login');
                           }
                         }}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (currentUser) {
-                              toggleSavedMovie(movie);
-                            } else {
-                              navigate('/login');
-                            }
-                          }
-                        }}
                       >
-                        <i className={`bi ${saved ? 'bi-check2' : 'bi-plus'} fs-4`}></i>
-                      </div>
+                        <i className={`bi ${saved ? 'bi-check2' : 'bi-plus'} fs-4`} style={{ color: 'white' }}></i>
+                      </button>
                     </div>
                     <div className="d-flex align-items-center gap-2 mb-1">
                       <span className="text-success fw-bold" style={{ fontSize: '0.75rem' }}>{rating} Rating</span>
