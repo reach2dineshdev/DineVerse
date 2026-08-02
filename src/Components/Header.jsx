@@ -28,9 +28,8 @@ export const Header = () => {
     e.preventDefault();
     const queryTerm = e.target.search.value;
     e.target.reset();
-    return navigator(`/search?q=${queryTerm}`);
+    return navigate(`/search?q=${queryTerm}`);
   };
-
   const toggleSearch = () => {
     setIsSearchOpen((prev) => !prev);
     if (!isSearchOpen) {
