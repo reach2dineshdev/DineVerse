@@ -21,10 +21,10 @@ export const Account = () => {
   ];
 
   useEffect(() => {
-    if (!currentUser) {
-      navigate('/login');
-    } else {
+    if (currentUser) {
       setDisplayName(currentUser.displayName || "");
+    } else {
+      navigate('/login');
     }
   }, [currentUser, navigate]);
 
@@ -74,7 +74,7 @@ export const Account = () => {
   };
 
   const handleClearList = () => {
-    if (window.confirm("Are you sure you want to clear your entire 'My List'? This cannot be undone.")) {
+    if (globalThis.confirm("Are you sure you want to clear your entire 'My List'? This cannot be undone.")) {
       clearSavedMovies();
     }
   };
@@ -102,6 +102,9 @@ export const Account = () => {
             className="position-relative d-inline-block mb-3" 
             style={{ cursor: 'pointer' }}
             onClick={() => setShowAvatarGrid(!showAvatarGrid)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowAvatarGrid(!showAvatarGrid); } }}
+            role="button"
+            tabIndex={0}
           >
             <img 
               src={customAvatar || currentUser.photoURL || "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"} 
@@ -110,6 +113,8 @@ export const Account = () => {
               style={{ width: '120px', height: '120px', objectFit: 'cover', border: '3px solid var(--color-primary)', padding: '4px', transition: 'transform 0.2s' }} 
               onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
               onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              onFocus={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onBlur={(e) => e.currentTarget.style.transform = 'scale(1)'}
             />
             <div className="position-absolute bottom-0 end-0 bg-primary rounded-circle" style={{ width: '28px', height: '28px', border: '3px solid #111', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <i className="bi bi-camera-fill text-white" style={{ fontSize: '12px' }}></i>
@@ -124,23 +129,28 @@ export const Account = () => {
           <div className="mb-5 bg-black p-4 rounded-4 border border-secondary shadow-lg">
             <h5 className="text-white mb-3 text-center">Choose an Avatar</h5>
             <div className="d-flex flex-wrap justify-content-center gap-3">
-              {avatars.map((url, idx) => (
+              {avatars.map((url) => (
                 <img 
-                  key={idx}
+                  key={url}
                   src={url}
-                  alt={`Avatar ${idx}`}
+                  alt="Avatar option"
                   className="rounded-circle cursor-pointer border border-2 border-transparent"
                   style={{ width: '60px', height: '60px', objectFit: 'cover', cursor: 'pointer', transition: 'all 0.2s' }}
                   onClick={() => handleUpdateAvatar(url)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleUpdateAvatar(url); } }}
+                  role="button"
+                  tabIndex={0}
                   onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
                   onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
+                  onFocus={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--color-primary)' }}
+                  onBlur={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'transparent' }}
                 />
               ))}
             </div>
             
             <div className="mt-4 text-center">
               <label className="btn btn-outline-light btn-sm px-4 rounded-pill">
-                <i className="bi bi-upload me-2"></i> Upload from Device
+                <i className="bi bi-upload me-2"></i> Upload from Device{" "}
                 <input type="file" accept="image/*" className="d-none" onChange={handleFileUpload} />
               </label>
             </div>

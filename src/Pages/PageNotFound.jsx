@@ -34,7 +34,7 @@ export const PageNotFound = () => {
         className="mb-5"
         style={{ color: 'var(--color-muted)', fontSize: '1.1rem', maxWidth: '420px' }}
       >
-        The page you're looking for doesn't exist or has been moved to another dimension.
+        The page you&apos;re looking for doesn&apos;t exist or has been moved to another dimension.
       </p>
 
       <Link

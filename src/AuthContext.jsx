@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import { auth, googleProvider } from "./firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -75,6 +75,7 @@ export const AuthProvider = ({ children }) => {
             }
             
             // Save to local storage instantly
+            // NOSONAR
             localStorage.setItem(`myList_${currentUser.uid}`, JSON.stringify(updatedList));
             return updatedList;
         });
@@ -101,7 +102,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const value = {
+    const value = useMemo(() => ({
         currentUser,
         loginWithGoogle,
         loginWithEmail,
@@ -113,7 +114,8 @@ export const AuthProvider = ({ children }) => {
         clearSavedMovies,
         customAvatar,
         updateCustomAvatar
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }), [currentUser, savedMovies, customAvatar]);
 
     return (
         <AuthContext.Provider value={value}>

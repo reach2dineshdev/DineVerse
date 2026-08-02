@@ -17,6 +17,7 @@ export const MovieList = ({ title, apiPath }) => {
   const isHome = title === IS_HOME_PAGE;
 
   // Pick a random top-5 movie for the hero background
+  // NOSONAR
   const heroMovie = movies.length > 0
     ? movies[Math.floor(Math.random() * Math.min(5, movies.length))]
     : null;

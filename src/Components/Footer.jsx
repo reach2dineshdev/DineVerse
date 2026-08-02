@@ -27,15 +27,15 @@ export const Footer = () => {
               and staying updated with the cinematic universe.
             </p>
             <div className="mt-4">
-              <a href="#" className="social-icon" aria-label="Twitter / X">
+              <button type="button" className="social-icon border-0 bg-transparent" aria-label="Twitter / X">
                 <i className="bi bi-twitter-x"></i>
-              </a>
-              <a href="#" className="social-icon" aria-label="Instagram">
+              </button>
+              <button type="button" className="social-icon border-0 bg-transparent" aria-label="Instagram">
                 <i className="bi bi-instagram"></i>
-              </a>
-              <a href="#" className="social-icon" aria-label="GitHub">
+              </button>
+              <button type="button" className="social-icon border-0 bg-transparent" aria-label="GitHub">
                 <i className="bi bi-github"></i>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -64,9 +64,9 @@ export const Footer = () => {
               Legal
             </h5>
             <ul className="list-unstyled d-flex flex-column gap-2">
-              <li><a href="#" className="text-decoration-none quick-links">Privacy Policy</a></li>
-              <li><a href="#" className="text-decoration-none quick-links">Terms & Conditions</a></li>
-              <li><a href="#" className="text-decoration-none quick-links">Cookie Policy</a></li>
+              <li><button type="button" className="text-decoration-none quick-links border-0 bg-transparent p-0">Privacy Policy</button></li>
+              <li><button type="button" className="text-decoration-none quick-links border-0 bg-transparent p-0">Terms & Conditions</button></li>
+              <li><button type="button" className="text-decoration-none quick-links border-0 bg-transparent p-0">Cookie Policy</button></li>
             </ul>
           </div>
 

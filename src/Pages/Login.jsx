@@ -19,6 +19,7 @@ export const Login = () => {
   useEffect(() => {
     if (movies && movies.length > 0) {
       // Pick a random movie from the popular list for the background
+      // NOSONAR
       const randomMovie = movies[Math.floor(Math.random() * movies.length)];
       if (randomMovie.backdrop_path) {
         setBgImage(`https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`);
@@ -80,6 +81,10 @@ export const Login = () => {
     }
   };
 
+  let submitText = "Sign In";
+  if (loading) submitText = "Please wait...";
+  else if (isSignUp) submitText = "Sign Up";
+
   return (
     <div 
       className="login-container d-flex flex-column align-items-center justify-content-center" 
@@ -124,7 +129,7 @@ export const Login = () => {
             type="submit"
             disabled={loading}
           >
-            {loading ? "Please wait..." : (isSignUp ? "Sign Up" : "Sign In")}
+            {submitText}
           </button>
           
           <div className="d-flex justify-content-between mb-4" style={{ fontSize: '0.85rem', color: '#B3B3B3' }}>
@@ -132,7 +137,7 @@ export const Login = () => {
               <input type="checkbox" id="rememberMe" className="me-2" defaultChecked style={{ accentColor: '#e50914' }} />
               <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <a href="#" className="text-decoration-none hover-glow" style={{ color: '#B3B3B3' }}>Need help?</a>
+            <button type="button" className="text-decoration-none hover-glow border-0 bg-transparent p-0" style={{ color: '#B3B3B3' }}>Need help?</button>
           </div>
           
           <button 
@@ -140,7 +145,7 @@ export const Login = () => {
             onClick={handleGoogleSignIn}
             className="btn login-btn-google w-100 fw-bold d-flex align-items-center justify-content-center gap-3 py-3"
           >
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" style={{width: '24px'}}/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" style={{width: '24px'}}/>{" "}
             Sign in with Google
           </button>
         </form>
@@ -148,9 +153,9 @@ export const Login = () => {
         <div className="mt-5" style={{ fontSize: '0.95rem', color: '#B3B3B3' }}>
           <p>
             {isSignUp ? "Already have an account?" : "New to DineVerse?"} 
-            <a 
-              href="#" 
-              className="text-white fw-bold text-decoration-none hover-glow ms-2"
+            <button 
+              type="button"
+              className="text-white fw-bold text-decoration-none hover-glow ms-2 border-0 bg-transparent p-0"
               onClick={(e) => {
                 e.preventDefault();
                 setIsSignUp(!isSignUp);
@@ -158,10 +163,10 @@ export const Login = () => {
               }}
             >
               {isSignUp ? "Sign in now." : "Sign up now."}
-            </a>
+            </button>
           </p>
           <p style={{ fontSize: '0.8rem', color: '#8c8c8c' }} className="mt-3">
-            This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#" className="text-primary text-decoration-none">Learn more.</a>
+            This page is protected by Google reCAPTCHA to ensure you're not a bot. <button type="button" className="text-primary text-decoration-none border-0 bg-transparent p-0">Learn more.</button>
           </p>
         </div>
       </div>
