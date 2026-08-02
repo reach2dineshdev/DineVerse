@@ -65,7 +65,7 @@ export const AuthProvider = ({ children /* NOSONAR */ }) => {
         if (!currentUser) return false;
         
         setSavedMovies((prevMovies) => {
-            const isSaved = prevMovies.find((m) => m.id === movie.id);
+            const isSaved = prevMovies.some((m) => m.id === movie.id);
             let updatedList;
             
             if (isSaved) {
