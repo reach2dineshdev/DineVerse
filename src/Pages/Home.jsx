@@ -10,7 +10,7 @@ export const Home = () => {
   const { data: nowPlaying } = UseFetch('movie/now_playing');
   const { data: trending   } = UseFetch('trending/movie/week');
   const { data: topRated   } = UseFetch('movie/top_rated');
-  const { data: popular    } = UseFetch('movie/popular');
+
   const { data: upcoming   } = UseFetch('movie/upcoming');
 
   return (

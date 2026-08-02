@@ -8,10 +8,10 @@ export const HeroCarousel = ({ movies = [] }) => {
   const [current, setCurrent]     = useState(0);
   const [trailerKey, setTrailerKey] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);  // auto-advance
+  const [isPlaying] = useState(true);  // auto-advance
   const [isMuted, setIsMuted]     = useState(true);
   const timerRef  = useRef(null);
-  const progressRef = useRef(null);
+
   const key = import.meta.env.VITE_API_KEY;
 
   const featured = movies.slice(0, 8);
@@ -64,7 +64,6 @@ export const HeroCarousel = ({ movies = [] }) => {
   if (!movie) return null;
 
   const backdrop = movie.backdrop_path ? `${TMDB_IMG}${movie.backdrop_path}` : null;
-  const rating   = movie.vote_average  ? Number(movie.vote_average).toFixed(1) : 'N/A';
   const year     = movie.release_date  ? movie.release_date.slice(0, 4) : '';
 
   /* YouTube embed URL – muted, autoplaying, looping, no controls */
