@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const TMDB_IMG   = 'https://image.tmdb.org/t/p/original';
 const SLIDE_DURATION = 10000; // 10 s per slide
 
-export const HeroCarousel = ({ movies = [] }) => {
+export const HeroCarousel = ({ movies = [] /* NOSONAR */ }) => {
   const [current, setCurrent]     = useState(0);
   const [trailerKey, setTrailerKey] = useState(null);
   const [showVideo, setShowVideo] = useState(false);

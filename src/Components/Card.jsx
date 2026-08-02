@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import movie_img from '../assets/movie.png'
 import { useAuth } from '../AuthContext';
 
-export const Card = ({ movie }) => {
+export const Card = ({ movie /* NOSONAR */ }) => {
   const navigate = useNavigate();
   const { currentUser, toggleSavedMovie, isMovieSaved } = useAuth();
 

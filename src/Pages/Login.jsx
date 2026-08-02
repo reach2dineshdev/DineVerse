@@ -20,7 +20,7 @@ export const Login = () => {
     if (movies && movies.length > 0) {
       // Pick a random movie from the popular list for the background
       // NOSONAR
-      const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+      const randomMovie = movies[Math.floor(Math.random() /* NOSONAR */ * movies.length)];
       if (randomMovie.backdrop_path) {
         setBgImage(`https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`);
       }

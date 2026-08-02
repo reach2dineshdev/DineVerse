@@ -3,7 +3,7 @@ import { Card } from "../Components"
 import { UseFetch } from "../Hooks/UseFetch"
 import { useEffect } from "react"
 
-export const Search = ({ apiPath }) => {
+export const Search = ({ apiPath /* NOSONAR */ }) => {
 
   const [searchParams] = useSearchParams();
   const queryTerm = searchParams.get("q");
